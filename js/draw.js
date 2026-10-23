@@ -1,7 +1,7 @@
 /* Drawing: the track screen, the close-up and the gap chart. */
 (function () {
   const G = (window.G = window.G || {});
-  // The screen colour can be changed by the Pixel Senate (see senate-hook.js); this is the original.
+  // The screen colour can be changed by the Pixel Senate (see universe-hook.js); this is the original.
   const screen = () => G.screenColour || '#0E171C';
   const DIM = 'rgba(190, 215, 225, 0.16)';
   const TEXT = 'rgba(210, 228, 235, 0.62)';
