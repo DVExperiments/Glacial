@@ -1,7 +1,8 @@
 /* Drawing: the track screen, the close-up and the gap chart. */
 (function () {
   const G = (window.G = window.G || {});
-  const SCREEN = '#0E171C';
+  // The screen colour can be changed by the Pixel Senate (see senate-hook.js); this is the original.
+  const screen = () => G.screenColour || '#0E171C';
   const DIM = 'rgba(190, 215, 225, 0.16)';
   const TEXT = 'rgba(210, 228, 235, 0.62)';
   const FONT = '"IBM Plex Sans", system-ui, sans-serif';
@@ -20,7 +21,7 @@
   }
 
   function scanlines(ctx, w, h) {
-    ctx.fillStyle = SCREEN;
+    ctx.fillStyle = screen();
     ctx.fillRect(0, 0, w, h);
     ctx.fillStyle = 'rgba(255,255,255,0.018)';
     for (let y = 0; y < h; y += 3) ctx.fillRect(0, y, w, 1);
@@ -195,7 +196,7 @@
     const X = (ms) => padL + (ms / endMs) * (W - padL - padR);
     const Y = (g) => padT + (g / yMax) * (Hh - padT - padB);
     let out = `<svg class="gapchart" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Gap to the leader over the race, in pixels">`;
-    out += `<rect width="${W}" height="${Hh}" fill="${SCREEN}"/>`;
+    out += `<rect width="${W}" height="${Hh}" fill="${screen()}"/>`;
     for (let k = 0; k <= 4; k++) {
       const g = (yMax * k) / 4;
       out += `<line x1="${padL}" x2="${W - padR}" y1="${Y(g)}" y2="${Y(g)}" stroke="rgba(190,215,225,0.1)"/>`;
@@ -224,7 +225,7 @@
     const Y = (r) => pad + (1 - (r - lo) / (hi - lo || 1)) * (Hh - 2 * pad);
     const d = rs.map((r, k) => `${k ? 'L' : 'M'}${X(k).toFixed(1)},${Y(r).toFixed(1)}`).join('');
     return `<svg class="spark" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Rating history, from ${lo.toFixed(0)} to ${hi.toFixed(0)}">
-      <rect width="${W}" height="${Hh}" fill="${SCREEN}"/>
+      <rect width="${W}" height="${Hh}" fill="${screen()}"/>
       <path d="${d}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round"/></svg>`;
   };
 })();
