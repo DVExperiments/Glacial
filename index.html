@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Glacial, the world’s slowest race</title>
+  <meta name="description" content="Two pixels race across a screen. It takes them a day. Live race, leaderboards, pixel statistics and a monthly 48-hour Grand Prix.">
+  <meta name="theme-color" content="#E6ECEE" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#10181D" media="(prefers-color-scheme: dark)">
+  <meta property="og:title" content="Glacial, the world’s slowest race">
+  <meta property="og:description" content="Two pixels race across a screen. It takes them a day.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#app">Skip to content</a>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="#live" aria-label="Glacial, go to the live race">
+        <span class="brand-track" aria-hidden="true"><span class="brand-pixel"></span></span>
+        <span class="brand-name">Glacial</span>
+      </a>
+      <p class="brand-tag">The world’s slowest race</p>
+      <nav class="nav" aria-label="Main">
+        <a href="#live" data-nav="live"><span class="live-dot" aria-hidden="true"></span>Live</a>
+        <a href="#gp" data-nav="gp">Grand Prix</a>
+        <a href="#standings" data-nav="standings">Standings</a>
+        <a href="#pixels" data-nav="pixels">Pixels</a>
+        <a href="#archive" data-nav="archive">Archive</a>
+        <a href="#records" data-nav="records">Records</a>
+        <a href="#about" data-nav="about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app" tabindex="-1">
+    <section class="page-head loading">
+      <h1 class="status">Replaying every race so far…</h1>
+      <p class="lede">This takes a moment. Pixels are slow.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Races start at midnight UTC. Times on this page are shown in your time zone.</p>
+    <p>No pixels were rushed in the making of this website.</p>
+  </footer>
+
+  <noscript><p class="noscript">The race runs in your browser, so it needs JavaScript turned on.</p></noscript>
+
+  <script src="js/pixels.js"></script>
+  <script src="js/sim.js"></script>
+  <script src="js/league.js"></script>
+  <script src="js/words.js"></script>
+  <script src="js/draw.js"></script>
+  <script src="js/views.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
