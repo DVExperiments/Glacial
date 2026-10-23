@@ -32,6 +32,7 @@
         <a href="#archive" data-nav="archive">Archive</a>
         <a href="#records" data-nav="records">Records</a>
         <a href="#about" data-nav="about">About</a>
+        <a href="https://dvexperiments.github.io/Bookmaker/" id="bet-link">Place a bet</a>
       </nav>
     </div>
   </header>
@@ -50,6 +51,23 @@
 
   <noscript><p class="noscript">The race runs in your browser, so it needs JavaScript turned on.</p></noscript>
 
+  <script>
+    // Points "Place a bet" at the next race. Worked out from the date alone, so Glacial reads nothing from the Bookmaker.
+    // Races start at 00:00 UTC; the Grand Prix on the 1st runs 48 hours, so nothing starts on the 2nd.
+    (function () {
+      var link = document.getElementById('bet-link');
+      var DAY = 86400000, pad = function (n) { return (n < 10 ? '0' : '') + n; };
+      function update() {
+        var now = Date.now(), t = now - (now % DAY) + DAY;
+        if (new Date(t).getUTCDate() === 2) t += DAY;
+        var d = new Date(t), y = d.getUTCFullYear(), m = pad(d.getUTCMonth() + 1);
+        var id = d.getUTCDate() === 1 ? 'GP-' + y + '-' + m : 'C-' + y + '-' + m + '-' + pad(d.getUTCDate());
+        link.href = 'https://dvexperiments.github.io/Bookmaker/#' + id;
+      }
+      update();
+      setInterval(update, 60000);
+    })();
+  </script>
   <script src="js/pixels.js"></script>
   <script src="js/sim.js"></script>
   <script src="js/league.js"></script>
