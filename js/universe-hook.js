@@ -13,6 +13,7 @@
   const G = (window.G = window.G || {});
   const WEATHER = 'https://dvexperiments.github.io/Weather/universe.js';
   const SENATE = 'https://dvexperiments.github.io/Senate/universe.js';
+  const BASE = 'https://dvexperiments.github.io/';
   const DAY = 86400000;
   const DEFAULTS = { 'names.crawl': 'Daily Crawl', 'names.gp': 'Grand Prix', 'names.trophy': 'Grand Prix Trophy', 'commentary.tone': 'measured' };
   // The short form used in "Crawl 412" and "Crawl wins".
@@ -241,7 +242,11 @@
       climate = window.PixelUniverse && window.PixelUniverse.climate;
       weatherLine();
       setInterval(weatherLine, 60000);
-      load(SENATE, (ok2) => { if (ok2) setTimeout(start, 0); });
+      // the Senate's elections follow Pixel City Society, which follows the city and its economy, so the Senate needs
+      // all of them to know its laws: load them in order, and keep Glacial's own look if any can't be reached
+      const CHAIN = [SENATE, BASE + 'City/universe.js', BASE + 'City/census.js', BASE + 'Exchange/universe.js', BASE + 'City/society.js'];
+      const next = (i) => (i >= CHAIN.length ? setTimeout(start, 0) : load(CHAIN[i], (ok2) => { if (ok2) next(i + 1); }));
+      next(0);
     });
   });
 })();
